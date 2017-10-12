@@ -2,24 +2,17 @@ import React, { Component } from 'react';
 import '../App.css';
 
 class TodoItem extends Component {
-    constructor(props) {
-        super(props);
-        this.removeTask = this.removeTask.bind(this);
-    }
-
-    removeTask(id) {
-        this.props.removeTask(id);
-    }
 
     render() {
-        const { id, task } = this.props;
+        const { task, removeTask } = this.props;
         return(
             <li className="mdc-list-item">
-                { task.taskName }
+                { task }
                 <button className="mdc-button mdc-button--stroked mdc-button--dense mdc-ripple-upgraded"
-                        onClick={(e) => this.removeTask(id)}>Delete task</button>
+                        onClick={ removeTask }>
+                    Delete task
+                </button>
             </li>
-
         )
     }
 }

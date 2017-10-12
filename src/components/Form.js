@@ -8,42 +8,36 @@ class Form extends Component {
         this.state = { taskName: '' };
         this.handleChange = this.handleChange.bind(this);
         this.addTask = this.addTask.bind(this);
-        this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
-    handleChange(e) {
-        this.setState({ taskName: e.target.value });
+    handleChange(ev) {
+        this.setState({ taskName: ev.target.value });
     }
 
-    addTask(task) {
-        if (task.length) {
-            this.props.addTask(task);
+    addTask(event) {
+        event.preventDefault();
+        if (this.state.taskName.length) {
             this.setState({ taskName: '' });
+            this.props.addTask(this.state.taskName);
         }
     }
-
-    handleKeyPress = (event) => {
-        let task = this.state.taskName;
-        if (event.key === 'Enter') {
-            this.addTask(task);
-        }
-    };
 
     render() {
         return (
-            <div className="form-wrapper">
+            <form onSubmit={ this.addTask } className="form-wrapper">
                 <div className="mdc-textfield">
                     <input type="text"
                            id="my-textfield"
                            className="mdc-textfield__input"
                            placeholder="What are you working on?"
                            value={ this.state.taskName }
-                           onChange={ this.handleChange }
-                           onKeyPress={ this.handleKeyPress } />
+                           onChange={ this.handleChange } />
                 </div>
-                <button className="mdc-button mdc-button--stroked mdc-button--dense mdc-ripple-upgraded"
-                        onClick={ () => this.addTask(this.state.taskName) }>Add task</button>
-            </div>
+                <button type="submit" 
+                    className="mdc-button mdc-button--stroked mdc-button--dense mdc-ripple-upgraded">
+                    Add task
+                </button>
+            </form>
         );
     }
 }

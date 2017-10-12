@@ -9,34 +9,27 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            todoList: [
-                { id: 1, taskName: 'Task 1'},
-                { id: 2, taskName: 'Task 2'},
-                { id: 3, taskName: 'Task 3'}
-            ],
-            nextId: 4
+            todoList: [],
         };
         this.addTask = this.addTask.bind(this);
-        this.removeTask = this.removeTask.bind(this);
     }
 
     addTask(taskName) {
-        let todos = this.state.todoList.slice();
-        todos.push({ id: this.state.nextId, taskName: taskName });
         this.setState({
-            todoList: todos,
-            nextId: ++this.state.nextId
+            todoList: [...this.state.todoList, taskName],
         })
     }
 
-    removeTask(id) {
+    removeTask(index) {
+        const copy = this.state.todoList.slice();
         this.setState({
-            todoList: this.state.todoList.filter((task, index) => task.id !== id)
-        })
+            todoList: copy.filter((e, i) => {
+                return i !== index;
+            })
+        });
     }
 
     render() {
-
         return (
             <div className="app">
                 <div className="todo-wrapper mdc-theme--dark">
@@ -44,12 +37,11 @@ class App extends Component {
                     <Form addTask={ this.addTask } />
                     <ul className="mdc-list todo-list">
                         {
-                            this.state.todoList.map(task => {
+                            this.state.todoList.map((item, i) => {
                                 return (
-                                    <TodoItem key={ task.id }
-                                              id={ task.id }
-                                              task={ task }
-                                              removeTask={ this.removeTask } />
+                                    <TodoItem key={ i }
+                                              task={ item }
+                                              removeTask={ () => this.removeTask(i) } />
                                 )
                             })
                         }
