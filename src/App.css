@@ -1,0 +1,72 @@
+@import "https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900";
+
+.app {
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.todo-header {
+    display: flex;
+    padding: 10px 16px;
+    margin-bottom: 20px;
+    color: #fff;
+    font-size: 26px;
+}
+
+.todo-wrapper {
+    color: #fff;
+    min-width: calc(100vw - 30em);
+    padding: 20px;
+}
+
+.todo-wrapper .mdc-button {
+    width: 130px;
+    transition: all .3s ease-in-out;
+}
+
+.todo-wrapper .mdc-button:hover {
+    color: #fff;
+    border-color: #fff;
+    border-color: var(--mdc-theme-text-primary-on-primary, #fff);
+}
+
+.form-wrapper {
+    margin-bottom: 10px;
+    padding: 0 16px;
+    display: flex;
+}
+
+.form-wrapper .mdc-textfield {
+    margin-bottom: 0px;
+    width: 80%;
+}
+
+.form-wrapper .mdc-textfield__input {
+    padding-bottom: 9px;
+}
+
+.form-wrapper .mdc-theme--dark .mdc-textfield:not(.mdc-textfield--upgraded) .mdc-textfield__input:not(:focus),
+.form-wrapper .mdc-textfield:not(.mdc-textfield--upgraded):not(.mdc-textfield--textarea) .mdc-textfield__input {
+    border-bottom: 2px solid #3f51b5;
+}
+
+.form-wrapper .mdc-textfield:not(.mdc-textfield--upgraded) .mdc-textfield__input:focus {
+    border-color: #fff;
+    border-color: var(--mdc-theme-text-primary-on-primary, #fff);
+}
+
+.form-wrapper .mdc-button,
+.todo-list .mdc-button {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.todo-list .mdc-list-item {
+    color: #3f51b5;
+}
